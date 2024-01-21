@@ -4,9 +4,20 @@ import java.util.*;
 public class ArrayManipulation {
     public static void main(String[] args) {
         String[] a = {"tree", "filing", "trashy", "abc-def", "uvwxyz"};
-        System.out.println(longestConsec(a, 2));
+        System.out.println(smash(a));
     }
-// given an array(list) strarr of strings and an integer k return the first longest string consisting of k consecutive strings taken in the array
+
+// function that takes an array of words and smashes them together into a sentence and returns the sentence
+    public static String smash(String... words) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < words.length; i++) {
+            result.append(" ").append(words[i]);
+        }
+        return result.toString().trim();
+    }
+
+
+    // given an array(list) strarr of strings and an integer k return the first longest string consisting of k consecutive strings taken in the array
     public static String longestConsec(String[] strarr, int k) {
         Map<Integer, String> map = new HashMap<>();
         if (strarr.length == 0 || k > strarr.length || k <= 0) return "";
@@ -22,7 +33,6 @@ public class ArrayManipulation {
         }
         return map.get(saveNumber);
     }
-
 
 // create a new list that contains each number of list at most N(maxOccurrences) times, without reordering
     public static int[] deleteNth(int[] elements, int maxOccurrences) {
