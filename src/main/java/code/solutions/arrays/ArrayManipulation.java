@@ -4,9 +4,22 @@ import java.util.*;
 public class ArrayManipulation {
     public static void main(String[] args) {
         String[] a = {"tree", "filing", "trashy", "abc-def", "uvwxyz"};
-        System.out.println(smash(a));
+        System.out.println(Arrays.toString(removeEveryOther(a)));
     }
 
+// Take an array and remove every second element from the array
+    public static Object[] removeEveryOther(Object[] arr) {
+        int size = (int) Math.ceil(arr.length / 2.0);
+        Object[] result = new Object[size];
+        int counter = 0;
+        for (int i = 0; i < arr.length; i++) {
+           if (i % 2 == 0) {
+               result[counter] = arr[i];
+               counter++;
+           }
+        }
+        return result;
+    }
 // function that takes an array of words and smashes them together into a sentence and returns the sentence
     public static String smash(String... words) {
         StringBuilder result = new StringBuilder();

@@ -1,12 +1,38 @@
 package code.solutions.strings;
 
+import code.solutions.QuickCheck;
+
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringManipulation {
     public static void main(String[] args) {
-        System.out.println(camelCase("worldAtWar"));
+        System.out.println(solution("*(^*^_#", "^_"));
+    }
+// returns true if the first argument passed in ends with the 2nd argument
+    public static boolean solution(String str, String ending) {
+        int endLen = ending.length();
+        str = str.substring(str.length() - endLen);
+        return str.equals(ending);
+    }
+
+// function that turns a string into a Mexican Wave
+    public static String[] wave(String str) {
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < str.length(); i++) {
+            char originalLetter = str.charAt(i);
+            if (originalLetter == ' ') continue;
+            char upperLetter = Character.toUpperCase(originalLetter);
+            StringBuilder stringBuilder = new StringBuilder(str);
+            stringBuilder.setCharAt(i, upperLetter);
+            list.add(stringBuilder.toString());
+        }
+        // Your code here
+        return list.toArray(new String[0]);
     }
 
 // correct the errors in the digitised text. You only have to handle the following mistakes:

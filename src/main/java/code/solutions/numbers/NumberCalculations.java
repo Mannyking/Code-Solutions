@@ -9,7 +9,62 @@ public class NumberCalculations {
     public static void main(String[] args) {
         int[] a = {};
         int[] b = {};
-        System.out.println(TwiceAsOld(30, 0));
+        System.out.println(sortDesc(834776328));
+    }
+
+// function that takes two integers and returns the sum of every number between (and including) them
+// next time use sum of arithmetic progression formula: n * (a + b) / 2
+    public static int getSum(int a, int b) {
+        int result = 0;
+        if (a == b) return a;
+
+        int difference = Math.abs(a - b);
+        if (a < b) {
+            for (int i = 0; i < difference; i++) {
+                result = result + a;
+                a = a + 1;
+            }
+            return result + b;
+        }
+        else {
+            for (int i = 0; i < difference; i++) {
+                result = result + b;
+                b = b + 1;
+            }
+            return result + a;
+        }
+    }
+
+// function that can take any non-negative integer as an argument and return it with its digits in descending order
+    public static int sortDesc(final int num) {
+        int result;
+        StringBuilder stringBuilder = new StringBuilder();
+        if (num < 0) {
+            return 0;
+        }
+        if (String.valueOf(num).length() ==  1) {
+            return num;
+        }
+        Map<Integer, Integer> hashMap = new HashMap<>();
+        String[] split = String.valueOf(num).split("");
+        for (String string : split) {
+            hashMap.put(Integer.valueOf(string), hashMap.getOrDefault(Integer.parseInt(string), 0) + 1);
+        }
+        for (Integer integer : hashMap.keySet()) {
+            int amount = hashMap.get(integer);
+            for (int i = 0; i < amount; i++) {
+                stringBuilder.append(integer);
+            }
+        }
+        stringBuilder.reverse();
+        result = Integer.parseInt(String.valueOf(stringBuilder));
+        return result;
+    }
+
+// he drinks 0.5 litres of water per hour
+// return the number of litres Nathan will drink
+    public int Liters(double time)  {
+        return (int) (0.5 * (int) time);
     }
 
 // Count the number of divisors of a positive integer n
