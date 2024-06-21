@@ -1,7 +1,4 @@
-package code.solutions.numbers;
-
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.Nullable;
+package code.solutions.java.numbers;
 
 import java.util.*;
 

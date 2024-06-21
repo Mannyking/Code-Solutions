@@ -1,5 +1,5 @@
 import code.solutions.CriticalReasoning;
-import code.solutions.numbers.NumberCalculations;
+import code.solutions.java.numbers.NumberCalculations;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 

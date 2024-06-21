@@ -1,4 +1,4 @@
-package code.solutions.arrays;
+package code.solutions.java.arrays;
 import java.util.*;
 
 public class ArrayManipulation {

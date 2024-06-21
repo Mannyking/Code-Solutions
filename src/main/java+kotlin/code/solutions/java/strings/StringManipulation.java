@@ -1,18 +1,67 @@
-package code.solutions.strings;
-
-import code.solutions.QuickCheck;
+package code.solutions.java.strings;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringManipulation {
     public static void main(String[] args) {
-        System.out.println(solution("*(^*^_#", "^_"));
+        System.out.println(regex());
     }
+
+    public static String regex() {
+        String text = "1.      lawaltolulope31@gmail.com\n" +
+                "\n" +
+                "2.      adewunmianuoluwapo577@gmail.com\n" +
+                "\n" +
+                "3.      oagbetile@gmail.com\n" +
+                "\n" +
+                "4.      maxgrisman@gmail.com\n" +
+                "\n" +
+                "5.      Neyo4u2nv@gmail.com\n" +
+                "\n" +
+                "6.      Olasupotaiwo2020@gmail.com\n" +
+                "\n" +
+                "7.      stellar@gmail.com\n" +
+                "\n" +
+                "8.      bpelumi6@gmail.com\n" +
+                "\n" +
+                "9.      alaobolafrancis@gmail.com\n" +
+                "\n" +
+                "10.   Damoranogabriel@gmail.com\n" +
+                "\n" +
+                "11.   kossyminaj3@gmail.com\n" +
+                "\n" +
+                "12.   tpliuz68@gmail.com\n" +
+                "\n" +
+                "13.   oluseyicoopbank@gmail.com\n" +
+                "\n" +
+                "14.   Akinwoleoluwaseun187@gmail.com\n" +
+                "\n" +
+                "15.   ogunwoleadeleye@gmail.com\n" +
+                "\n" +
+                "16.   ogabibimbo@gmail.com\n" +
+                "\n" +
+                "17.   cygilberts@gmail.com\n" +
+                "\n" +
+                "18.   chiomaonuh3@gmail.com\n" +
+                "\n" +
+                "19.   adedoyinmustapha1@gmail.com\n" +
+                "\n" +
+                "20.   feyisayoadedipe@gmail.com\n" +
+                "\n" +
+                "21.   osokobalikis@gmail.com\n" +
+                "\n" +
+                "22.   naniadezz@gmail.com\n" +
+                "\n" +
+                "23.   phemhardex@gmail.com\n" +
+                "\n" +
+                "24.   ogbenibaba10@gmail.com\n";
+
+        return text.replaceAll("\\d+\\.\\s+", "").replaceAll("\n+", ", ");
+    }
+
 // returns true if the first argument passed in ends with the 2nd argument
     public static boolean solution(String str, String ending) {
         int endLen = ending.length();
