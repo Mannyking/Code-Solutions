@@ -29,6 +29,6 @@ bin/
 .DS_Store
 
 ### personal ###
-/QuickCheck.java
-/Crypt.java
-/Giveaway.java
+src/main/java+kotlin/code/solutions/java/security/Crypt.java
+src/main/java+kotlin/code/solutions/Giveaway.java
+src/main/java+kotlin/code/solutions/QuickCheck.java
