@@ -2,12 +2,6 @@ package code.solutions.kotlin.numbers
 
 import kotlin.math.sqrt
 
-fun main() {
-    val triangle = Triangle(4.9, 5.5, 6.0)
-    println("The area of the triangle is ${triangle.area()}")
-    println("The perimeter of the triangle is ${triangle.perimeter()}")
-}
-
 class NumberCalculations {
 // Write a program that finds the summation of every number from 1 to num
     fun summation(num: Int): Int {
@@ -27,6 +21,17 @@ class NumberCalculations {
         return listOf(first, second, third, fifth, fourth).max()
     }
 
+    // function that takes varying number of arguments
+    fun addNumbers(vararg numbers: Int): Int {
+        var result = 0
+        for (number in numbers) {
+            result += number
+        }
+        result /= numbers.size
+        println("The size of vararg numbers is ${numbers.size}")
+        return result
+    }
+
     fun alternatingSum(vararg numbers: Int) {
         if (numbers.isEmpty()) return
 
@@ -43,30 +48,36 @@ class NumberCalculations {
         }
         println("Final Result: $result")
     }
+// Take a list of ages when each of your great-grandparent died.
+//Multiply each number by itself.
+//Add them all together.
+//Take the square root of the result.
+//Divide by two.
+    fun predictAge(vararg age: Int): Int{
+        val squared = age.map { it * it }
+        val added = squared.sum()
+        val rooted = sqrt(added.toDouble()).toInt()
+        println("The final result is ${rooted/2}")
+        return rooted/2
+    }
+
+// remove the last digit until you're left with a number that is a multiple of three.
+// Return n if the input is already a multiple of three
+    fun prevMultOfThree(n: Int): Int? {
+        if (n % 3 == 0) return n
+        var newNumber = n
+        val len = n.toString().length
+        for(i in 1..len) {
+            newNumber /= 10
+            println(newNumber)
+            if (newNumber % 3 == 0 && newNumber != 0) return newNumber
+        }
+        return null
+    }
+
 }
 
-
-class Triangle(
-    private val x: Double,
-    private val y: Double,
-    private val z: Double
-) {
-    init {
-        println("We will now be performing some series of operations on this Triangle, values are $x, $y, and $z")
-    }
-
-    fun area(): Double {
-        val perimeterHalf = perimeter() / 2
-        return sqrt(perimeterHalf * (perimeterHalf-x) * (perimeterHalf-y) * (perimeterHalf-z))
-    }
-
-    fun perimeter() = x + y + z
-}
-
-fun MutableList<Int>.product(): Int {
-    var result = 1
-    for (i in this) {
-        result *= i
-    }
-    return result
+fun main() {
+    val numberCalculations = NumberCalculations()
+    numberCalculations.prevMultOfThree(25)
 }

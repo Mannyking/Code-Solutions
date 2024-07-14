@@ -30,9 +30,113 @@ class StringManipulation {
         }
     return result
     }
+
+// given a string of space separated numbers, return the highest and lowest number without lambda
+    fun highAndLow(numbers: String): String {
+        val numList = numbers.split(" ").map { it.toInt() }
+        val max = numList.maxOrNull()
+        val min = numList.minOrNull()
+
+        return "$max $min"
+    }
+
+// Given a string, capitalize the letters that occupy even indexes and odd indexes separately, and return as shown below. Index 0 will be considered even.
+    fun capitalize(text: String): List<String> {
+        fun even(text: String): String {
+            val list: MutableList<Char> = text.toCharArray().toMutableList()
+            for (i in list.indices) {
+                if (i % 2 == 0) {
+                    list[i] = list[i].uppercaseChar()
+                }
+            }
+            return list.joinToString(separator = "")
+        }
+
+        fun odd(text: String): String {
+            val list: MutableList<Char> = text.toCharArray().toMutableList()
+            for (i in list.indices) {
+                if (i % 2 == 1) {
+                    list[i] = list[i].uppercaseChar()
+                }
+            }
+            return (list.joinToString(separator = ""))
+        }
+        return listOf(even(text), odd(text))
+    }
+
+// accum("abcd") -> "A-Bb-Ccc-Dddd"
+    fun accum(s: String): String {
+        val result = StringBuilder()
+        val splitList = s.toCharArray().toList()
+        for ((i, v) in splitList.withIndex()) {
+            result.append(v.uppercaseChar())
+            repeat(i) { result.append(v.lowercaseChar()) }
+            if (i != splitList.size-1) result.append("-")
+        }
+        return result.toString()
+    }
+
+    fun getMiddle(word : String) : String {
+        val middle = word.length / 2
+        if (word.length % 2 == 0) {
+            return word[middle-1].toString() + word[middle].toString()
+        }
+        return word[middle].toString()
+    }
+
+// Change any instance of "Fire" into "~~".
+    fun fireFight(s: String): String {
+        return s.split(" ").joinToString(", ") { it.replace("fire", "~~", ignoreCase = true) }
+    }
+
+// 56789 -> 67895 -> 68957 -> 68579 -> 68597 and return the greatest: 68957.
+    fun maxRot(n: Long): Long {
+        val nStr = n.toString()
+        val list: MutableList<Long> = mutableListOf(n)
+        var tempStr = nStr
+        for (i in 0 until nStr.length - 1) {
+            println("First substring: ${tempStr.substring(0, i)}")
+            println("Second substring: ${tempStr.substring(i + 1)}")
+            println("Current character: ${tempStr[i]} \n")
+
+            tempStr = tempStr.substring(0, i) + tempStr.substring(i + 1) + tempStr[i]
+            list.add(tempStr.toLong())
+        }
+        return list.maxOrNull() ?: n
+    }
+
+// ...returning them as a string of comma-separated sequences sorted alphabetically,
+// with each sequence starting with an uppercase character followed by n-1 lowercase characters,
+// where n is the letter's alphabet position 1-26
+    fun alphaSeq(str: String): String {
+        val orderedList: MutableList<Int> = mutableListOf()
+        for (i in str) {
+            orderedList.add(i.lowercaseChar().code)
+            orderedList.sort()
+        }
+        val orderedStr : String = orderedList.joinToString("") { it.toChar().toString() }
+
+        val list = orderedStr.toCharArray().toMutableList()
+        val result = StringBuilder()
+        var position: Int
+        for (v in list) {
+            position = v.code - 'a'.code + 1
+            result.append(v.uppercaseChar())
+            repeat(position - 1) {result.append(v)}
+            result.append(",")
+        }
+        println(result)
+        return result.substring(0, result.length - 1).toString()
+    }
 }
 
 fun main() {
     val stringManipulation = StringManipulation()
-    println(stringManipulation.repeatStr(5, "mannan"))
+    stringManipulation.alphaSeq("gerarea")
+    val asciiValueOfz = 'z'.code
+    val asciiValueOfZ = 'Z'.code
+    println("ASCII value of 'z': $asciiValueOfz")
+    println("ASCII value of 'Z': $asciiValueOfZ")
+
+    println("Normal index of z is ${asciiValueOfZ - 'A'.code + 1}")
 }

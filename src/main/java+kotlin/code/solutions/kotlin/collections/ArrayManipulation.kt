@@ -1,34 +1,5 @@
 package code.solutions.kotlin.collections
 
-//Given a non-empty array of integers, return the result of multiplying the values together in order. Example:
-//
-//[1, 2, 3, 4] => 1 * 2 * 3 * 4 = 24
-fun main() {
-    val arrayManipulation = ArrayManipulation()
-
-    println("Enter 5 numbers:")
-    val first = readlnOrNull()
-    val second = readlnOrNull()
-    val third = readlnOrNull()
-    val fourth = readlnOrNull()
-    val fifth = readlnOrNull()
-
-    if (first != null && second != null && third != null && fourth != null && fifth != null) {
-        println(addNumbers(first.toInt(), second.toInt(), third.toInt(), fourth.toInt(), fifth.toInt()))
-    }
-}
-
-// function that takes varying number of arguments
-fun addNumbers(vararg numbers: Int): Int {
-    var result = 0
-    for (number in numbers) {
-        result += number
-    }
-    result /= numbers.size
-    println("The size of vararg numbers is ${numbers.size}")
-    return result
-}
-
 class ArrayManipulation {
     fun grow(arr: IntArray): Int {
         var result = 1
@@ -44,4 +15,34 @@ class ArrayManipulation {
             println(arr[i])
         }
     }
+
+// Given a random non-negative number, you have to return the digits of this number within an array in reverse order.
+    fun digitize(n: Long): IntArray {
+        val str = n.toString().reversed()
+        val list: MutableList<Int> = mutableListOf()
+        for (s in str) {
+            list.add(s.digitToInt())
+        }
+        return list.toIntArray()
+    }
+
+// You are provided with a list (or array) of integer pairs.
+// Elements of each pair represent the number of people that get on the bus (the first item) and the number of people that get off the bus (the second item) at a bus stop.
+// Your task is to return the number of people who are still on the bus after the last bus stop (after the last array)
+    fun people(busStops: Array<Pair<Int, Int>>) : Int {
+        var peopleWhoLeft = 0
+        var maxPeopleOnboard = 0
+        var remainingPeople = 0
+        for (pair in busStops) {
+            maxPeopleOnboard = pair.first
+            peopleWhoLeft = pair.second
+            remainingPeople += (maxPeopleOnboard - peopleWhoLeft)
+        }
+    return remainingPeople
+    }
+}
+
+fun main() {
+    val arrayManipulation = ArrayManipulation()
+    arrayManipulation.digitize(3212423)
 }
