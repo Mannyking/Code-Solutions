@@ -3,6 +3,14 @@ package code.solutions.kotlin.strings
 import java.util.*
 
 class StringManipulation {
+// jdbc:mysql://sdasdasdasd:szdasdasd:dfsdfsdfsdf/sdfsdfsdf?user=root&password=12345
+    fun hidePasswordFromConnection(urlString: String): String {
+        val remainder = urlString.replaceBefore("password=", "")
+        val passwordLength = remainder.replaceFirst("password=", "").length
+        val asterisk = "*".repeat(passwordLength)
+        return urlString.replaceAfter("password=", asterisk)
+    }
+
 //    Replace all vowel to exclamation mark in the sentence. aeiouAEIOU is vowel.
     fun replace(s: String): String {
         val sArray = s.toCharArray()
@@ -131,12 +139,8 @@ class StringManipulation {
 }
 
 fun main() {
-    val stringManipulation = StringManipulation()
-    stringManipulation.alphaSeq("gerarea")
-    val asciiValueOfz = 'z'.code
-    val asciiValueOfZ = 'Z'.code
-    println("ASCII value of 'z': $asciiValueOfz")
-    println("ASCII value of 'Z': $asciiValueOfZ")
+    val result =
+        StringManipulation().hidePasswordFromConnection("// jdbc:mysql://sdasdasdasd:szdasdasd:dfsdfsdfsdf/sdfsdfsdf?user=root&password=password=")
 
-    println("Normal index of z is ${asciiValueOfZ - 'A'.code + 1}")
+    println(result)
 }

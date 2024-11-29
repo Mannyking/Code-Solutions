@@ -2,10 +2,21 @@ package code.solutions.kotlin.collections
 
 fun main() {
     val listManipulation = ListManipulation()
-    findIndex(listOf(2, 4, 5, 3, 1, 10), 4)
+    listManipulation.evenNumbers(listOf(1, 2, 3, 4, 5, 6, 7, 8, 9), 3)
 }
 
 class ListManipulation {
+// Given an array of numbers, return a new array of length number containing the last even numbers from the original array (in the same order).
+// The original array will be not empty and will contain at least "number" even numbers.
+    fun evenNumbers(list: List<Int>, number: Int): List<Int> {
+        var newList: List<Int> = listOf()
+        if (list.size > number) {
+            val difference = list.size - number
+            newList = list.filterIndexed { index, value -> (index >= difference && value % 2 == 0) }
+        }
+        return newList
+    }
+
     //fibonacci series
     fun calcFibonacci(length: Int): MutableList<Int> {
         val list = mutableListOf(0, 1)
